@@ -1,0 +1,14 @@
+# First Docker file implementation using Sample.sh
+ARG version="18.04"
+FROM ubuntu:$version
+# The variable version is available only till FROM not for down lines
+RUN echo "version is $version"
+ARG ENCRYPTION_KEY="99$"
+LABEL MAINTAINER preetamis2cool@gmail.com
+RUN mkdir /code
+COPY Sample.sh /code/Sample.sh
+RUN chmod +x /code/Sample.sh
+RUN echo "encryption key is $ENCRYPTION_KEY"
+ENTRYPOINT ["sh","/code/Sample.sh"]
+CMD ["/etc/hosts"]
+# CMD sh /code/Sample.sh /etc/hosts
